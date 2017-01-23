@@ -2,7 +2,7 @@
 
 ![rule30](https://dl.dropboxusercontent.com/u/16238897/avyfain.io/seed-wolfram-small.gif "Wolfram's Rule 30")
 
-A companion repo for my blog post about Wolfram's elementary cellular automata.
+A companion repo for my [blog post](http://faingezicht.com/articles/2017/01/23/wolfram/) about Wolfram's elementary cellular automata.
 
 Currently requires Python 3.x, and no other dependencies.
 
