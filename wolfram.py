@@ -4,7 +4,12 @@ import argparse
 from random import choice
 from time import sleep
 
-MAX_TIME = os.get_terminal_size().columns // 2
+if hasattr(os, 'get_terminal_size'):
+    terminal_size_fn = os.get_terminal_size
+else:
+    from backports.shutil_get_terminal_size import get_terminal_size as terminal_size_fn
+
+MAX_TIME = terminal_size_fn().columns // 2
 RULES = {30: {"111": '0', "110": '0', "101": '0', "000": '0',
               "100": '1', "011": '1', "010": '1', "001": '1'},
 
