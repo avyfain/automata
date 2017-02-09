@@ -5,20 +5,16 @@ from random import choice
 from time import sleep
 
 MAX_TIME = os.get_terminal_size().columns // 2
-RULES = {30: {"111": '0', "110": '0', "101": '0', "000": '0',
-              "100": '1', "011": '1', "010": '1', "001": '1'},
-
-         90: {"111": "0", "110": "1", "101": "0", "100": "1",
-              "011": "1", "010": "0", "001": "1", "000": "0"},
-
-         110: {"111": '0', "110": '1', "101": '1', "100": '0',
-               "011": '1', "010": '1', "001": '1', "000": '0'},
-
-         184: {"111": "1", "110": "0", "101": "1", "100": "1",
-               "011": "1", "010": "0", "001": "0", "000": "0"}
-         }
 
 
+def make_rule(rule_num):
+    # make a rule from the value (int) passed in
+    keys = ["{0:#b}".format(i)[2:].zfill(3) for i in range(7,-1,-1)]
+    values = [c for c in "{0:#b}".format(rule_num)[2:].zfill(8)]
+    rule_dict = {k:v for k,v in zip(keys, values)}
+    return rule_dict
+
+  
 def window(iterable, stride=3):
     for index in range(len(iterable) - stride + 1):
         yield iterable[index:index + stride]
@@ -58,7 +54,7 @@ def main():
     else:
         initial_state = '0' * MAX_TIME + '1' + '0' * MAX_TIME
 
-    rule = RULES[args.rule]
+    rule = make_rule(args.rule)
     print("Using rule", args.rule)
     generate_pattern(initial_state, rule)
 
